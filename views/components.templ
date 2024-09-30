@@ -1,0 +1,51 @@
+package view
+
+templ Layout(title string) {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>{ title }</title>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<meta name="description" content="A brief description of the webpage."/>
+			<meta name="robots" content="index, follow"/>
+			<meta property="og:title" content={ title }/>
+			<meta name="theme-color" content="#ffffff"/>
+			<meta name="apple-mobile-web-app-capable" content="yes"/>
+			<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+			<link href="/static/styles.css" rel="stylesheet"/>
+		</head>
+		<body>
+			{ children... }
+		</body>
+	</html>
+}
+
+templ Home() {
+	@Layout("Homepage Example") {
+		<div class="flex items-center justify-center h-screen gap-5">
+			<div class="container mx-auto max-w-sm">
+				<h1>Welcome</h1>
+				<form class="flex flex-col gap-5" hx-post="/submit">
+					<div class="sm:col-span-2">
+						<label for="name">Name</label>
+						<div>
+							<input type="text" name="name" id="name" class=""/>
+						</div>
+					</div>
+					<div class="sm:col-span-2">
+						<label for="email">Email</label>
+						<div>
+							<input type="email" name="email" id="email" autocomplete="email" class=""/>
+						</div>
+					</div>
+					<div>
+						<input type="checkbox" id="terms" name="terms" required/>
+						<label class="text-sm" for="terms">I agree to the terms and conditions</label>
+					</div>
+					<button class="border border-gray-400 p-5 text-gray-900 text-sm" type="submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	}
+}
